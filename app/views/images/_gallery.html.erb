@@ -1,5 +1,3 @@
-<div id='gallery'>
-  <% @images.each do |image| %>
-    <%= image_tag image.file.url(:thumb) %>
-  <% end %>
-</div>
+<% @images.each do |image| %>
+  <%= image_tag image.file.url(:thumb) %>
+<% end %>

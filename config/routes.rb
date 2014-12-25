@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :images
+  resources :images, only: [:index, :create]
 
-  root 'say#hello'
+  root 'images#index'
   get 'say/hello'
 
   get 'say/goodbye'

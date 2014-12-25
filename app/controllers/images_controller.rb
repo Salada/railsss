@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = Image.order("id DESC").all
     @image = Image.new
   end
 
@@ -30,7 +30,8 @@ class ImagesController < ApplicationController
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
+        # format.json { render :show, status: :created, location: @image }
+        format.json { render json: @image.file }
       else
         format.html { render :new }
         format.json { render json: @image.errors, status: :unprocessable_entity }
