@@ -1,0 +1,17 @@
+<%= javascript_include_tag 'dropzone' %>
+<%= stylesheet_link_tag 'dropzone' %>
+<script>
+  $(function() {
+    $("#new_image").dropzone({
+      url: "<%= images_path %>",
+      paramName: "image[file]"
+    });
+  });
+</script>
+
+<%= form_for @image, multipart: true, html: { class: "dropzone" } do |f| %>
+  <div class="fallback">
+    <%= f.file_field :file %>
+    <%= f.submit %>
+  </div>
+<% end %>
