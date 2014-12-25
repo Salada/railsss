@@ -1,6 +1,7 @@
 <%= javascript_include_tag 'dropzone' %>
 <%= stylesheet_link_tag 'dropzone' %>
 <script>
+  Dropzone.autoDiscover = false;
   $(function() {
     $("#new_image").dropzone({
       url: "<%= images_path %>",
