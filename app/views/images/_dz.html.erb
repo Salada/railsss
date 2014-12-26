@@ -12,7 +12,9 @@
       var filename = file.name;
       var url = res.replace("original", "thumb");
       filename = filename.substring(0, filename.length - 4);
-      $("#gallery").prepend("<img alt=" + filename + " src=<%= root_path %>" + url + " />");
+      var code = "<a href=\"<%= root_path %>" + res + "\"><img alt=\"" + filename + "\" src=\"<%= root_path %>" + url + "\" /></a>";
+      $("#gallery").prepend(code);
+      $("#gallery").justifiedGallery();
     });
   });
 
