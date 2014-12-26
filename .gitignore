@@ -16,5 +16,6 @@
 /tmp
 
 /public/system
+/public/assets
 
 /.ruby-version

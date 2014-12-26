@@ -1,0 +1,28 @@
+Dropzone.autoDiscover = false;
+$(function() {
+  var dz = new Dropzone("#new_image", {
+    url: "<%= images_path %>",
+    paramName: "image[file]"
+  });
+  $("#gallery").justifiedGallery({
+    rel: 'gallery',
+    margins: 2
+  }).on('jg.complete', function() {
+    $(this).find('a').colorbox({
+      maxWidth: '80%',
+      maxHeight: '80%',
+      opacity: 0.8,
+      transition: 'elastic',
+      current: ''
+    });
+  });
+  dz.on("success", function(file, res) {
+    this.removeFile(file);
+    var filename = file.name;
+    var url = res.replace("original", "thumb");
+    filename = filename.substring(0, filename.length - 4);
+    var code = "<a href=\"<%= root_path %>" + res + "\"><img alt=\"" + filename + "\" src=\"<%= root_path %>" + url + "\" /></a>";
+    $("#gallery").prepend(code);
+  });
+});
+

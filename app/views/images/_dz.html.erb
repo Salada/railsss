@@ -1,25 +1,3 @@
-<%= javascript_include_tag 'dropzone' %>
-<%= stylesheet_link_tag 'dropzone' %>
-<script>
-  Dropzone.autoDiscover = false;
-  $(function() {
-    var dz = new Dropzone("#new_image", {
-        url: "<%= images_path %>",
-        paramName: "image[file]"
-    });
-    dz.on("success", function(file, res) {
-      this.removeFile(file);
-      var filename = file.name;
-      var url = res.replace("original", "thumb");
-      filename = filename.substring(0, filename.length - 4);
-      var code = "<a href=\"<%= root_path %>" + res + "\"><img alt=\"" + filename + "\" src=\"<%= root_path %>" + url + "\" /></a>";
-      $("#gallery").prepend(code);
-      $("#gallery").justifiedGallery();
-    });
-  });
-
-</script>
-
 <%= form_for @image, multipart: true, html: { class: "dropzone" } do |f| %>
   <div class="fallback">
     <%= f.file_field :file %>
